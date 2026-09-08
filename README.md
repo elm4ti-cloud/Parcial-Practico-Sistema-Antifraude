@@ -111,7 +111,3 @@ Indique qué debe hacer cada opción:
 Acción: finaliza el programa
 
 ---
-
-## Nota
-
-Este archivo debe completarse durante los primeros 15 minutos del parcial, antes de comenzar la implementación.
