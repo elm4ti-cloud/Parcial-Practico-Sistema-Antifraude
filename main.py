@@ -73,7 +73,6 @@ class Transaccion:
     def from_dict(cls, datos):
         return cls(
             datos["id"],
-            datos["datos"],
             datos["titular"],
             datos["valor"],
             datos["hora"],
@@ -128,6 +127,15 @@ def ejecutar_casos_prueba(transacciones):
     
     for datos in casos:
         try:
+            id_existe = False
+            for t in transacciones:
+                if t.id == datos["id"]:
+                    id_existe = True
+                    break
+            
+            if id_existe:
+                continue
+
             t = Transaccion(
                 datos["id"],
                 datos["titular"],
@@ -155,6 +163,12 @@ def registrar_transaccion(transacciones):
     print("\n--- REGISTRAR TRANSACCIÓN ---")
     try:
         id = int(input("ID: "))
+        
+        for t in transacciones:
+            if t.id == id:
+                print(f"\nError: Ya existe una transacción con el ID {id}.")
+                return
+
         titular = input("Titular: ")
         valor = float(input("Valor: "))
         hora = int(input("Hora (0-23): "))
